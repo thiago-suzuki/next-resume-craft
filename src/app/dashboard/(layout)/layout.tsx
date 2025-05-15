@@ -24,7 +24,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                 </div>
             </aside>
 
-            <main>
+            <main className="p-6 flex flex-col w-full h-full overflow-auto">
                 {children}
             </main>
         </div>
