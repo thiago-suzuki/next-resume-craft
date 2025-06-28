@@ -21,7 +21,15 @@ export const ResumePage = () => {
                 location: "",
                 phone: "",
                 website: ""
-            }
+            },
+            summary: "",
+            certifications: [],
+            educations: [],
+            experiences: [],
+            languages: [],
+            projects: [],
+            skills: [],
+            socialMedias: [],
         }
     }
     const methods = useForm<ResumeData>({ defaultValues })
