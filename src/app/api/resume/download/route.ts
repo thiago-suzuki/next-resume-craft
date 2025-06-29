@@ -1,10 +1,13 @@
 import { formatTailwindHTML } from "@/lib/utils";
 
 import puppeteer from "puppeteer";
+import puppeteerCore from "puppeteer-core";
+import chromium from "@sparticuz/chromium";
 
 export const POST = async (request: Request) => {
   try {
     const body = await request.json();
+
     const { html, structure } = body;
 
     if (!html || !structure) return Response.json(
@@ -13,13 +16,23 @@ export const POST = async (request: Request) => {
     );
 
     let browser = null;
-    browser = await puppeteer.launch();
+
+    if (process.env.NODE_ENV === "development") {
+      browser = await puppeteer.launch();
+    } else {
+      browser = await puppeteerCore.launch({
+        args: chromium.args,
+        defaultViewport: chromium.defaultViewport,
+        executablePath: await chromium.executablePath(),
+        headless: chromium.headless,
+      });
+    }
 
     const page = await browser.newPage();
 
     await page.setContent(formatTailwindHTML(html, structure));
 
-
+    // @ts-expect-error
     const bodyHeight = await page.evaluate(() => {
       return document.body.scrollHeight + 20;
     });
@@ -37,7 +50,6 @@ export const POST = async (request: Request) => {
         "Content-type": "application/pdf",
       }
     })
-
   } catch (error) {
     console.error(error);
     return Response.json(
