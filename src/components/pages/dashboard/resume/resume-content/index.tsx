@@ -10,7 +10,7 @@ type ResumeContentProps = {
   title: string;
 }
 
-export const ResumeContent = () => {
+export const ResumeContent = ({ title }: ResumeContentProps) => {
   const { watch } = useFormContext<ResumeData>();
 
   const data = watch();
@@ -25,10 +25,10 @@ export const ResumeContent = () => {
         limitToBounds={false}
       >
         <>
-          <NavigationHeader />
-          <TransformControls />
+          <NavigationHeader title={title} />
+          <TransformControls title={title} />
           <TransformComponent>
-            <ResumeTemplate data={data}/>
+            <ResumeTemplate data={data} />
           </TransformComponent>
         </>
       </TransformWrapper>
