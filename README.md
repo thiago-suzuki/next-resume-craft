@@ -6,6 +6,8 @@ App de Construção de Currículos com sistema de Pagamento de Créditos e gera�
   <img alt="Dom Casmurro" title="Dom Casmurro" width="700" src="src/assets/image.png" />
 </h1>
 
+<br /><br />
+
 ## 🚀 Tecnologias
 - [TypeScript](https://www.typescriptlang.org/) > Linguagem Principal da Aplicação
 - [NextJS](https://nextjs.org/) > Framework com React para criação do Layout 
@@ -20,12 +22,15 @@ App de Construção de Currículos com sistema de Pagamento de Créditos e gera�
 - [PostgreSQL](https://www.postgresql.org/) > Servidor de Banco de Dados
 - [Neon](https://neon.com/) > Ferramenta de Administração do Banco de Dados
 
+<br /><br />
+
 ## 📄 Credenciais para realização de Pagamento de Créditos (Não é preciso usar seu cartão pessoal para isso)
 - Número do Cartão: 4242424242424242 (Ou qualquer outro)
 - CVC: 444 (Ou qualquer outro)
 - DATA: 04/34 (Ou qualquer outro)<br /><br />
 Referência: https://docs.stripe.com/testing?testing-method=card-numbers#visa
 
+<br /><br />
 
 ## 💻 Link Deploy
 https://resume-craft-phi.vercel.app
