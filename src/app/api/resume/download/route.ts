@@ -51,6 +51,7 @@ export const POST = async (request: Request) => {
       }
     })
   } catch (error) {
+    console.log("Meu erro", error)
     console.error(error);
     return Response.json(
       { message: "Ocorreu um erro inesperado", error },
