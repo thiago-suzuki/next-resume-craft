@@ -8,7 +8,7 @@ import { ptBR } from "date-fns/locale";
 import { cn } from "@/lib/utils";
 import { ClientProviders } from "@/components/shared/client-providers";
 
-const fontSans = Nunito_Sans({ subsets: ["latin"], variable: "--font-sans" });
+const fontSans = Nunito_Sans({ subsets: ['latin'], variable: '--font-sans', display: 'swap', adjustFontFallback: false })
 const fontTitle = Nunito({ subsets: ["latin"], variable: "--font-title" });
 
 export const metadata: Metadata = {
