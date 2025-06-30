@@ -1,7 +1,7 @@
 import { formatTailwindHTML } from "@/lib/utils";
 
 import puppeteer from "puppeteer";
-import chromium from "chrome-aws-lambda";
+import chromium from "@sparticuz/chrome-aws-lambda";
 
 export const POST = async (request: Request) => {
   try {
@@ -20,10 +20,11 @@ export const POST = async (request: Request) => {
       browser = await puppeteer.launch();
     } else {
       browser = await chromium.puppeteer.launch({
-        args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
+        args: chromium.args,
+        defaultViewport: chromium.defaultViewport,
         executablePath: await chromium.executablePath,
-        headless: true,
-        ignoreHTTPSErrors: true
+        headless: chromium.headless,
+        ignoreHTTPSErrors: true,
       });
     }
 
