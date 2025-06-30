@@ -1,8 +1,10 @@
 import { formatTailwindHTML } from "@/lib/utils";
 
 import puppeteer from "puppeteer";
-import puppeteerCore from "puppeteer-core";
+import { chromium as playwright} from "playwright-core";
 import chromium from "@sparticuz/chromium";
+
+export const dynamic = 'force-dynamic'
 
 export const POST = async (request: Request) => {
   try {
@@ -15,23 +17,20 @@ export const POST = async (request: Request) => {
       { status: 400 }
     );
 
-    let browser = null;
+    let browser = null, page = null, context = null;
 
     if (process.env.NODE_ENV === "development") {
       browser = await puppeteer.launch();
+      page = await browser.newPage();
     } else {
-      chromium.setGraphicsMode = false;
-
-      browser = await puppeteerCore.launch({
+      browser = await playwright.launch({
         args: chromium.args,
-        defaultViewport: chromium.defaultViewport,
         executablePath: await chromium.executablePath(),
-        headless: true,
-        ignoreDefaultArgs: ['--disable-extensions']
       });
-    }
 
-    const page = await browser.newPage();
+      context = await browser.newContext()
+      page = await context.newPage();
+    }
 
     await page.setContent(formatTailwindHTML(html, structure));
 
@@ -46,7 +45,13 @@ export const POST = async (request: Request) => {
       printBackground: true,
     });
 
-    await browser.close();
+    if (process.env.NODE_ENV === "development") {
+      await browser.close();
+    }
+    else {
+      await context?.close();
+      await browser.close();
+    }
 
     return new Response(pdf, {
       headers: {
