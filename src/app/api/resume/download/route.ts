@@ -29,10 +29,17 @@ export const POST = async (request: Request) => {
         width: 1920,
       };
 
+      const executablePath = await chromium.executablePath();
+
+      if (!executablePath) {
+        throw new Error("Chromium executable path not found.");
+      }
+
+
       browser = await puppeteerCore.launch({
         args: puppeteer.defaultArgs({ args: chromium.args, headless: "shell" }),
         defaultViewport: viewport,
-        executablePath: await chromium.executablePath('var/task/node_modules/@sparticuz/chromium/bin'),
+        executablePath,
         headless: "shell",
       });
     }
