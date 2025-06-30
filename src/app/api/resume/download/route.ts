@@ -1,8 +1,7 @@
 import { formatTailwindHTML } from "@/lib/utils";
 
 import puppeteer from "puppeteer";
-import puppeteerCore from "puppeteer-core";
-import chromium from "@sparticuz/chromium";
+import chromium from "chrome-aws-lambda";
 
 export const POST = async (request: Request) => {
   try {
@@ -20,27 +19,12 @@ export const POST = async (request: Request) => {
     if (process.env.NODE_ENV === "development") {
       browser = await puppeteer.launch();
     } else {
-      const viewport = {
-        deviceScaleFactor: 1,
-        hasTouch: false,
-        height: 1080,
-        isLandscape: true,
-        isMobile: false,
-        width: 1920,
-      };
-
-      const executablePath = await chromium.executablePath();
-
-      if (!executablePath) {
-        throw new Error("Chromium executable path not found.");
-      }
-
-
-      browser = await puppeteerCore.launch({
-        args: puppeteer.defaultArgs({ args: chromium.args, headless: "shell" }),
-        defaultViewport: viewport,
-        executablePath,
-        headless: "shell",
+      browser = await chromium.puppeteer.launch({
+        args: chromium.args,
+        defaultViewport: chromium.defaultViewport,
+        executablePath: await chromium.executablePath,
+        headless: chromium.headless,
+        ignoreHTTPSErrors: true,
       });
     }
 
