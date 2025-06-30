@@ -1,8 +1,8 @@
 import { formatTailwindHTML } from "@/lib/utils";
 
 import puppeteer from "puppeteer";
-import puppeteerCore from "puppeteer-core";
-import chromium from "@sparticuz/chromium";
+// import puppeteer from "puppeteer-core";
+// import chromium from "@sparticuz/chromium";
 
 export const POST = async (request: Request) => {
   try {
@@ -15,10 +15,7 @@ export const POST = async (request: Request) => {
       { status: 400 }
     );
 
-    let browser = null;
-
-    browser = await puppeteer.launch();
-
+    let browser = await puppeteer.launch();
     const page = await browser.newPage();
 
     await page.setContent(formatTailwindHTML(html, structure));
