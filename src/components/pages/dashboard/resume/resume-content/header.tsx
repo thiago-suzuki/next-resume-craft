@@ -58,7 +58,7 @@ export const NavigationHeader = ({ title }: NavigationHeaderProps) => {
           </Tooltip>
         </DuplicateResumeDialog>
 
-        <Tooltip content="Baixar PDF">
+        {/* <Tooltip content="Baixar PDF">
           <Button
             variant="secondary"
             className="w-8 h-8 bg-transparent"
@@ -68,7 +68,7 @@ export const NavigationHeader = ({ title }: NavigationHeaderProps) => {
           >
             <Download size={18} />
           </Button>
-        </Tooltip>
+        </Tooltip> */}
       </div>
     </header>
   );

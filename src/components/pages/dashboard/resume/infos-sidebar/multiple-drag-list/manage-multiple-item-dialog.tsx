@@ -346,25 +346,27 @@ export const ManageMultipleItemDialog = ({
       open={open}
       setOpen={setOpen}
       content={
-        <form
-          onSubmit={methods.handleSubmit(onSubmit)}
-          className="flex flex-col mt-2"
-        >
-          <div className="grid grid-cols-2 gap-4 mb-4">
-            <FormProvider {...methods}>{formContent}</FormProvider>
-          </div>
+        <div className="max-h-[80vh] overflow-y-auto pr-2">
+          <form
+            onSubmit={methods.handleSubmit(onSubmit)}
+            className="flex flex-col mt-2"
+          >
+            <div className="grid grid-cols-2 gap-4 mb-4">
+              <FormProvider {...methods}>{formContent}</FormProvider>
+            </div>
 
-          <div className="ml-auto flex gap-3">
-            {isEditing && (
-              <Button variant="destructive" onClick={onDelete}>
-                Remover
+            <div className="ml-auto flex gap-3">
+              {isEditing && (
+                <Button variant="destructive" onClick={onDelete}>
+                  Remover
+                </Button>
+              )}
+              <Button type="submit" className="w-max">
+                {isEditing ? "Salvar" : "Adicionar"}
               </Button>
-            )}
-            <Button type="submit" className="w-max">
-              {isEditing ? "Salvar" : "Adicionar"}
-            </Button>
-          </div>
-        </form>
+            </div>
+          </form>
+        </div>
       }
     />
   );

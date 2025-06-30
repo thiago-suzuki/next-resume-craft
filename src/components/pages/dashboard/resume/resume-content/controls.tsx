@@ -30,12 +30,12 @@ export const TransformControls = ({ title }: TransformControlsProps) => {
       label: "Resetar posição",
       onClick: () => centerView(0.5),
     },
-    {
-      icon: Download,
-      label: "Baixar PDF",
-      onClick: () => handleDownloadResume(),
-      disabled: isLoading,
-    }
+    // {
+    //   icon: Download,
+    //   label: "Baixar PDF",
+    //   onClick: () => handleDownloadResume(),
+    //   disabled: isLoading,
+    // }
   ];
 
   return (
@@ -52,7 +52,7 @@ export const TransformControls = ({ title }: TransformControlsProps) => {
             className="w-6 h-6 bg-transparent"
             size="icon"
             onClick={control.onClick}
-            disabled={control.disabled}
+            // disabled={control.disabled}
           >
             <control.icon size={16} />
           </Button>
