@@ -20,11 +20,20 @@ export const POST = async (request: Request) => {
     if (process.env.NODE_ENV === "development") {
       browser = await puppeteer.launch();
     } else {
+      const viewport = {
+        deviceScaleFactor: 1,
+        hasTouch: false,
+        height: 1080,
+        isLandscape: true,
+        isMobile: false,
+        width: 1920,
+      };
+
       browser = await puppeteerCore.launch({
-        args: chromium.args,
-        defaultViewport: chromium.defaultViewport,
+        args: puppeteer.defaultArgs({ args: chromium.args, headless: "shell" }),
+        defaultViewport: viewport,
         executablePath: await chromium.executablePath(),
-        headless: chromium.headless,
+        headless: "shell",
       });
     }
 
