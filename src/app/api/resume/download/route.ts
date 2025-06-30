@@ -20,6 +20,8 @@ export const POST = async (request: Request) => {
     if (process.env.NODE_ENV === "development") {
       browser = await puppeteer.launch();
     } else {
+      chromium.setGraphicsMode = false;
+
       browser = await puppeteerCore.launch({
         args: chromium.args,
         defaultViewport: chromium.defaultViewport,
