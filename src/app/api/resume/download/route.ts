@@ -20,11 +20,10 @@ export const POST = async (request: Request) => {
       browser = await puppeteer.launch();
     } else {
       browser = await chromium.puppeteer.launch({
-        args: chromium.args,
-        defaultViewport: chromium.defaultViewport,
+        args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
         executablePath: await chromium.executablePath,
-        headless: chromium.headless,
-        ignoreHTTPSErrors: true,
+        headless: true,
+        ignoreHTTPSErrors: true
       });
     }
 
