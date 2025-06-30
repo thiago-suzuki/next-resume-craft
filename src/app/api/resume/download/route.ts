@@ -2,7 +2,7 @@ import { formatTailwindHTML } from "@/lib/utils";
 
 import puppeteer from "puppeteer";
 import puppeteerCore from "puppeteer-core";
-import chromium from "@sparticuz/chromium";
+import chromium from "@sparticuz/chromium-min";
 
 export const POST = async (request: Request) => {
   try {
@@ -32,7 +32,7 @@ export const POST = async (request: Request) => {
       browser = await puppeteerCore.launch({
         args: puppeteer.defaultArgs({ args: chromium.args, headless: "shell" }),
         defaultViewport: viewport,
-        executablePath: await chromium.executablePath('var/bin'),
+        executablePath: await chromium.executablePath(),
         headless: "shell",
       });
     }
