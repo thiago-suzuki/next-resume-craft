@@ -1,7 +1,8 @@
 import { formatTailwindHTML } from "@/lib/utils";
 
 import puppeteer from "puppeteer";
-import chromium from "@sparticuz/chrome-aws-lambda";
+import puppeteerCore from "puppeteer-core";
+import chromium from "@sparticuz/chromium";
 
 export const POST = async (request: Request) => {
   try {
@@ -19,12 +20,11 @@ export const POST = async (request: Request) => {
     if (process.env.NODE_ENV === "development") {
       browser = await puppeteer.launch();
     } else {
-      browser = await chromium.puppeteer.launch({
+      browser = await puppeteerCore.launch({
         args: chromium.args,
         defaultViewport: chromium.defaultViewport,
-        executablePath: await chromium.executablePath,
-        headless: chromium.headless,
-        ignoreHTTPSErrors: true,
+        executablePath: await chromium.executablePath(),
+        headless: true
       });
     }
 

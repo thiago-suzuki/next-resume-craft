@@ -4,7 +4,6 @@ const nextConfig = {
     serverComponentsExternalPackages: [
       "puppeteer-core",
       "@sparticuz/chromium",
-      "@sparticuz/chrome-aws-lambda",
     ]
   },
   reactStrictMode: false,
