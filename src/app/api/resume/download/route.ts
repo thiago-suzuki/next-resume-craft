@@ -26,7 +26,8 @@ export const POST = async (request: Request) => {
         args: chromium.args,
         defaultViewport: chromium.defaultViewport,
         executablePath: await chromium.executablePath(),
-        headless: true
+        headless: true,
+        ignoreDefaultArgs: ['--disable-extensions']
       });
     }
 
