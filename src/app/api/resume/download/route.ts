@@ -32,7 +32,7 @@ export const POST = async (request: Request) => {
       browser = await puppeteerCore.launch({
         args: puppeteer.defaultArgs({ args: chromium.args, headless: "shell" }),
         defaultViewport: viewport,
-        executablePath: await chromium.executablePath(),
+        executablePath: await chromium.executablePath('var/bin'),
         headless: "shell",
       });
     }
